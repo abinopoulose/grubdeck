@@ -1,0 +1,16 @@
+[ 
+    { 
+        "id": 1, 
+        "name": "xenlism-grub-1080p-Debian", 
+        "repo_link": "https://github.com/abinopoulose/grub-theme-01", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 2, 
+        "name": "xenlism-grub-1080p-Ubuntu", 
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    }
+]
