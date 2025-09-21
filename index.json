@@ -27,7 +27,7 @@
     },
     { 
         "id": 3, 
-        "name": "3- xenlism-grub-1080p-Ubuntu", 
+        "name": "3-xenlism-grub-1080p-Ubuntu", 
         "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
         "description": "this is a description", 
@@ -40,7 +40,7 @@
     },
     { 
         "id": 4, 
-        "name": "4- xenlism-grub-1080p-Ubuntu", 
+        "name": "4-xenlism-grub-1080p-Ubuntu", 
         "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
         "description": "this is a description", 
@@ -53,7 +53,7 @@
     },
     { 
         "id": 5, 
-        "name": "5- xenlism-grub-1080p-Ubuntu", 
+        "name": "5-xenlism-grub-1080p-Ubuntu", 
         "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
         "description": "this is a description", 
@@ -66,7 +66,7 @@
     },
     { 
         "id": 6, 
-        "name": "6- xenlism-grub-1080p-Ubuntu", 
+        "name": "6-xenlism-grub-1080p-Ubuntu", 
         "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
          "carousel_images" :[
