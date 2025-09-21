@@ -2,6 +2,7 @@
     { 
         "id": 1, 
         "name": "xenlism-grub-1080p-Debian", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-01", 
         "description": "this is a description", 
         "created_by": "xenlism"
@@ -9,6 +10,47 @@
     { 
         "id": 2, 
         "name": "xenlism-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 3, 
+        "name": "3- xenlism-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 4, 
+        "name": "4- xenlism-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 5, 
+        "name": "5- xenlism-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 6, 
+        "name": "6- xenlism-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
+        "description": "this is a description", 
+        "created_by": "xenlism"
+    },
+    { 
+        "id": 7, 
+        "name": "7-grub-1080p-Ubuntu", 
+        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
         "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
         "description": "this is a description", 
         "created_by": "xenlism"
