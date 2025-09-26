@@ -233,7 +233,13 @@ class GrubThemeManagerApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(WINDOW_TITLE)
-        self.setGeometry(100, 100, WINDOW_WIDTH, WINDOW_HEIGHT)
+        
+        # --- FIX: Changed setGeometry to resize and added setMinimumSize ---
+        self.resize(WINDOW_WIDTH, WINDOW_HEIGHT)
+        # Ensure resizability by setting a minimum practical size
+        self.setMinimumSize(QSize(800, 600))
+        # --- END FIX ---
+        
         self.current_theme = None
         self.installer_thread = None
         self.progress_dialog = None
