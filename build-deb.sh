@@ -14,8 +14,8 @@ ICON_SOURCE="./grubdeck-logo.png"
 DISPLAY_NAME="Grub Deck"
 
 # --- Dependencies ---
-DEPENDENCIES="python3, python3-pyqt5, python3-tk, python3-pil"
-
+# Using pyqt6 which is a modern qt python binding
+DEPENDENCIES="python3, python3-pyqt6, git"
 
 echo "Starting Debian package creation for ${APP_NAME}..."
 
@@ -31,6 +31,8 @@ mkdir -p "${DEB_BUILD_DIR}/usr/share/pixmaps"
 # 2. Copy application files and logo
 echo "Copying application files..."
 cp -r "${SOURCE_DIR}/." "${DEB_BUILD_DIR}/usr/share/${APP_NAME}/"
+# Add the privileged installer script to the correct location.
+cp "${SOURCE_DIR}/privileged_installer.py" "${DEB_BUILD_DIR}/usr/share/${APP_NAME}/"
 cp "${ICON_SOURCE}" "${DEB_BUILD_DIR}/usr/share/pixmaps/${APP_NAME}.png"
 
 # 3. Create the control file
@@ -50,9 +52,8 @@ EOF
 
 # 4. Create the application wrapper script
 echo "Creating wrapper script for /usr/bin..."
-# Using printf is more resilient to shell environment issues than a here-document
-# for creating simple files like this.
-printf '#!/bin/bash\npkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY /usr/bin/python3 /usr/share/%s/main.py\n' "${APP_NAME}" > "${DEB_BUILD_DIR}/usr/bin/${APP_NAME}"
+# The wrapper script should simply launch the python app as the current user.
+printf '#!/bin/bash\n/usr/bin/python3 /usr/share/%s/main.py\n' "${APP_NAME}" > "${DEB_BUILD_DIR}/usr/bin/${APP_NAME}"
 
 # 5. Create the Desktop Entry file
 echo "Creating desktop entry file..."

@@ -5,9 +5,9 @@ This guide will walk you through the process of installing, and running the grub
 Since the package is hosted on GitHub, you can use a single command block to download and install it directly.
 
 ```
-wget https://github.com/abinopoulose/grubdeck/releases/download/v1.0.0/grubdeck-1.0.0-all.deb
+wget https://github.com/abinopoulose/grubdeck/releases/download/deb/grubdeck-latest.deb
 
-sudo apt install ./grubdeck-1.0.0-all.deb
+sudo apt install ./grubdeck-latest.deb
 ```
 
 
