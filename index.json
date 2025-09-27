@@ -1,93 +1,27 @@
 [ 
     { 
         "id": 1, 
-        "name": "xenlism-grub-1080p-Debian", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-01", 
-        "description": "this is a description", 
+        "name": "xenlism_Debian_1080p", 
+        "cover_image": "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-Debian/Xenlism-Debian/background.png",
+        "repo_link": "https://github.com/xenlism/Grub-themes/tree/main/xenlism-grub-1080p-Debian/Xenlism-Debian", 
+        "description": "Screen Size: 1080p \n Made for Debian", 
         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
+            "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-Debian/Xenlism-Debian/background.png",
+            "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-Debian/Xenlism-Debian/background.png"
         ],
         "created_by": "xenlism"
     },
     { 
         "id": 2, 
-        "name": "xenlism-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-        "description": "this is a description", 
+        "name": "xenlism_Ubuntu_1080p", 
+        "cover_image": "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-ubuntu/Xenlism-Ubuntu/background.png",
+        "repo_link": "https://github.com/xenlism/Grub-themes/tree/main/xenlism-grub-1080p-ubuntu/Xenlism-Ubuntu", 
+        "description": "Screen Size: 1080p | Made for Ubuntu", 
          "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
-        ],
-        "created_by": "xenlism"
-    },
-    { 
-        "id": 3, 
-        "name": "3-xenlism-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-        "description": "this is a description", 
-         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
-        ],
-        "created_by": "xenlism"
-    },
-    { 
-        "id": 4, 
-        "name": "4-xenlism-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-        "description": "this is a description", 
-         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
-        ],
-        "created_by": "xenlism"
-    },
-    { 
-        "id": 5, 
-        "name": "5-xenlism-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-        "description": "this is a description", 
-         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
-        ],
-        "created_by": "xenlism"
-    },
-    { 
-        "id": 6, 
-        "name": "6-xenlism-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
-        ],
-        "description": "this is a description", 
-        "created_by": "xenlism"
-    },
-    { 
-        "id": 7, 
-        "name": "7-grub-1080p-Ubuntu", 
-        "cover_image": "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        "repo_link": "https://github.com/abinopoulose/grub-theme-02", 
-        "description": "this is a description", 
-         "carousel_images" :[
-            "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
-            "https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630",
-            "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk="
+            "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-ubuntu/Xenlism-Ubuntu/background.png",
+            "https://raw.githubusercontent.com/xenlism/Grub-themes/refs/heads/main/xenlism-grub-1080p-ubuntu/Xenlism-Ubuntu/background.png"
         ],
         "created_by": "xenlism"
     }
+
 ]
