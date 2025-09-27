@@ -12,7 +12,6 @@ from theme_fetcher import ThemeFetcher, CarouselImageFetcher
 from theme_installer import ThemeInstaller
 
 class GrubThemeManagerApp(QMainWindow):
-    """Main application window for GRUB Theme Manager"""
     
     def __init__(self):
         super().__init__()
@@ -42,12 +41,10 @@ class GrubThemeManagerApp(QMainWindow):
         self.start_theme_fetching()
     
     def setup_home_page(self):
-        """Setup the home page with dynamic search bar and theme grid"""
         layout = QVBoxLayout(self.home_page)
         layout.setContentsMargins(25, 25, 25, 25)
         layout.setSpacing(15)
 
-        # --- HEADER LAYOUT (for Title and Search) ---
         self.header_h_layout = QHBoxLayout()
         self.header_h_layout.setContentsMargins(0, 0, 0, 0)
         self.header_h_layout.setSpacing(10)
@@ -84,28 +81,37 @@ class GrubThemeManagerApp(QMainWindow):
         self.header_h_layout.addWidget(self.search_close_button)
         
         layout.addLayout(self.header_h_layout)
-        # --- END HEADER LAYOUT ---
 
-        # Theme grid
         self.theme_grid_layout = QGridLayout()
         self.theme_grid_layout.setSpacing(25) 
-        self.theme_grid_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop)
+        self.theme_grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft) 
 
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         
         self.grid_container = QWidget()
-        self.grid_container.setLayout(self.theme_grid_layout)
+        
+        self.grid_wrapper_layout = QVBoxLayout(self.grid_container)
+        self.grid_wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        
+        h_center_layout = QHBoxLayout()
+        h_center_layout.setContentsMargins(0, 0, 0, 0)
+        h_center_layout.addStretch(1)
+        h_center_layout.addLayout(self.theme_grid_layout)
+        h_center_layout.addStretch(1)
+        
+        self.grid_wrapper_layout.addLayout(h_center_layout)
+        
+        self.grid_wrapper_layout.addStretch(1) 
+
         self.scroll_area.setWidget(self.grid_container)
         
-        # Ensure scroll area fills remaining vertical space
         layout.addWidget(self.scroll_area, 1) 
         
         self.toggle_search_mode(False)
     
     def toggle_search_mode(self, expanded):
-        """Toggles between collapsed search icon and expanded search bar."""
         if expanded:
             self.search_icon_button.hide()
             self.title_label.setFixedWidth(200) 
@@ -130,12 +136,10 @@ class GrubThemeManagerApp(QMainWindow):
 
     
     def setup_preview_page(self):
-        """Setup the theme preview page"""
         layout = QVBoxLayout(self.preview_page)
         layout.setContentsMargins(25, 25, 25, 25)
         layout.setSpacing(15)
 
-        # --- HEADER ---
         header_h_layout = QHBoxLayout()
         header_h_layout.setContentsMargins(0, 0, 0, 0)
         header_h_layout.setSpacing(15)
@@ -157,8 +161,8 @@ class GrubThemeManagerApp(QMainWindow):
 
         layout.addLayout(header_h_layout)
         
-        # Details
         self.image_carousel = ImageCarousel()
+        self.image_carousel.setMinimumHeight(400) 
         layout.addWidget(self.image_carousel)
 
         self.preview_author_label = QLabel()
@@ -170,7 +174,6 @@ class GrubThemeManagerApp(QMainWindow):
         self.preview_description_label.setStyleSheet("font-size: 14px; color: #444; margin-bottom: 20px;")
         layout.addWidget(self.preview_description_label)
         
-        # --- Buttons ---
         button_h_layout = QHBoxLayout()
         button_h_layout.setSpacing(15) 
         
@@ -194,13 +197,11 @@ class GrubThemeManagerApp(QMainWindow):
         layout.addStretch()
 
     def resizeEvent(self, event):
-        """Recalculates the theme grid layout on window resize."""
         super().resizeEvent(event)
         if self.central_widget.currentWidget() == self.home_page and self.themes_data:
             self._repopulate_grid(self.themes_data)
 
     def _repopulate_grid(self, themes_to_display: list[Theme]):
-        """Populates the grid dynamically based on available width."""
         for i in reversed(range(self.theme_grid_layout.count())):
             item = self.theme_grid_layout.itemAt(i)
             widget = item.widget()
@@ -216,10 +217,10 @@ class GrubThemeManagerApp(QMainWindow):
 
         CARD_WIDTH = 250
         SPACING = 25 
-        available_width = self.grid_container.width()
+        available_width = self.scroll_area.viewport().width() - 50
 
         if (CARD_WIDTH + SPACING) > 0:
-            num_columns = int((available_width + SPACING) / (CARD_WIDTH + SPACING))
+            num_columns = int((available_width - 1 + SPACING) / (CARD_WIDTH + SPACING))
         else:
             num_columns = 2 
             
@@ -238,18 +239,15 @@ class GrubThemeManagerApp(QMainWindow):
         QApplication.processEvents()
 
     def start_theme_fetching(self):
-        """Start fetching themes from the repository"""
         self.fetcher_thread = ThemeFetcher()
         self.fetcher_thread.themes_fetched.connect(self.populate_theme_grid)
         self.fetcher_thread.start()
     
     def populate_theme_grid(self, themes_data):
-        """Populate the theme grid with fetched data."""
         self.themes_data = themes_data
         self._repopulate_grid(self.themes_data)
     
     def filter_themes(self):
-        """Filter themes based on search bar text"""
         query = self.full_search_bar.text().lower()
         if query:
             filtered_themes = [
@@ -262,7 +260,6 @@ class GrubThemeManagerApp(QMainWindow):
         self._repopulate_grid(filtered_themes)
 
     def show_theme_preview(self, theme: Theme):
-        """Display the selected theme's details on the preview page"""
         self.current_theme = theme
         self.preview_name_label.setText(self.current_theme.name)
         self.preview_author_label.setText(f"By: {self.current_theme.created_by}")
@@ -277,12 +274,10 @@ class GrubThemeManagerApp(QMainWindow):
         self.central_widget.setCurrentWidget(self.preview_page)
 
     def open_repo_link(self):
-        """Open the theme's GitHub repository link"""
         if self.current_theme and self.current_theme.repo_link:
             webbrowser.open(self.current_theme.repo_link)
 
     def install_theme(self):
-        """Install the selected theme"""
         if not self.current_theme:
             return
 
@@ -298,12 +293,10 @@ class GrubThemeManagerApp(QMainWindow):
         self.installer_thread.start()
     
     def on_installation_progress(self, percentage, message):
-        """Handle installation progress updates"""
         if self.progress_dialog:
             self.progress_dialog.update_progress(percentage, message)
     
     def on_installation_completed(self, success, message):
-        """Handle installation completion"""
         if self.progress_dialog:
             self.progress_dialog.close()
             self.progress_dialog = None
