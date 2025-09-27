@@ -1,27 +1,16 @@
-#!/usr/bin/env python3
-"""
-GrubDeck - GRUB Theme Manager
-A PyQt6 application for managing GRUB themes
-"""
-
 import sys
-import os
 from PyQt6.QtWidgets import QApplication
+from main_window import GrubThemeManagerApp
 
-# Add the current directory to the Python path for imports
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+if __name__ == "__main__":
+    # Ensure requests library is available for HTTP communication
+    try:
+        import requests
+    except ImportError:
+        print("Error: The 'requests' library is required. Please install it with: pip install requests")
+        sys.exit(1)
 
-from ui_components import GrubThemeManagerApp
-
-
-def main():
-    """Main entry point for the application"""
-    # Create and run the application
     app = QApplication(sys.argv)
     window = GrubThemeManagerApp()
     window.show()
     sys.exit(app.exec())
-
-
-if __name__ == "__main__":
-    main()
