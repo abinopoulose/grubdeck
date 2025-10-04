@@ -99,10 +99,10 @@ chmod 0755 "${DEB_BUILD_DIR}/usr/bin/${APP_NAME}"
 
 # 8. Build the .deb package
 echo "Building the .deb package..."
-dpkg-deb --build "${DEB_BUILD_DIR}"
+dpkg-deb --build "${DEB_BUILD_DIR}" grubdeck.deb
 
 echo "Package creation complete!"
-echo "Your Debian package is ready: ${DEB_BUILD_DIR}.deb"
+echo "Your Debian package is ready: grubdeck.deb"
 
 # 9. Clean up the temporary directory..."
 echo "Cleaning up temporary directory..."
