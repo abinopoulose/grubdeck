@@ -1,0 +1,74 @@
+name: build and publish rpm and deb packages
+
+on:
+  push:
+    branches:
+      - master
+    
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_deb:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write 
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies and Make Script Executable
+        run: |
+          chmod +x build-deb.sh
+
+      - name: Build Debian Package (grubdeck.deb)
+        run: ./build-deb.sh
+        
+      - name: Publish grubdeck.deb to 'deb' tag
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "deb"
+          name: "Latest Debian Build"
+          body: "Automatic build of grubdeck.deb triggered by merge to master branch."
+          overwrite: true
+          files: |
+            grubdeck.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  build_rpm:
+    runs-on: ubuntu-latest
+    needs: build_deb
+    
+    permissions:
+      contents: write 
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies and Make Script Executable
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby ruby-dev build-essential
+          sudo gem install --no-document fpm
+          chmod +x build-rpm.sh
+
+      - name: Build RPM Package (grubdeck.rpm)
+        run: ./build-rpm.sh
+          
+      - name: Publish grubdeck.rpm to 'rpm' tag
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "rpm"
+          name: "Latest RPM Build"
+          body: "Automatic build of grubdeck.rpm triggered by merge to master branch."
+          overwrite: true
+          files: |
+            grubdeck.rpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
