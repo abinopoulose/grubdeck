@@ -7,7 +7,7 @@ Since the package is hosted on GitHub, you can use a single command block to dow
 ```
 wget https://github.com/abinopoulose/grubdeck/releases/download/deb/grubdeck.deb
 
-sudo apt install ./grubdeck-latest.deb
+sudo apt install ./grubdeck.deb
 ```
 
 
