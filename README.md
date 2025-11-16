@@ -17,5 +17,5 @@ From the Application Menu: Search for "Grub Deck" in your system's application m
 
 From the Terminal: Open a terminal and simply type the command name. You will need to use sudo because the application requires administrative privileges to modify GRUB files.
 ```
-sudo grubdeck
+grubdeck
 ```
