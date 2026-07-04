@@ -1,32 +1,32 @@
 import json
 import requests
-import os
-import shutil
-import tempfile
 from PyQt6.QtCore import QThread, pyqtSignal
-from PyQt6.QtGui import QPixmap
 from models import Theme
 from constants import THEME_INDEX_URL, ERROR_NO_COVER_IMAGE
+from cache_manager import CacheManager
+
+# Initialize the global cache instance
+cache = CacheManager()
 
 class ThemeFetcher(QThread):
-    """
-    Thread for fetching the list of themes from a remote repository.
-    """
     themes_fetched = pyqtSignal(list)
 
     def run(self):
-        """
-        Fetches the theme data from the remote URL and emits it.
-        """
         try:
-            response = requests.get(THEME_INDEX_URL)
-            response.raise_for_status()
+            # Check cache first (Expires in 1 Hour / 3600 seconds)
+            cached_data = cache.get(THEME_INDEX_URL, max_age_seconds=3600)
             
-            themes_data = json.loads(response.text)
+            if cached_data:
+                themes_data = json.loads(cached_data.decode('utf-8'))
+            else:
+                response = requests.get(THEME_INDEX_URL, timeout=15)
+                response.raise_for_status()
+                # Save the new response to cache
+                cache.set(THEME_INDEX_URL, response.content)
+                themes_data = json.loads(response.text)
             
             themes = []
             for data in themes_data:
-                # Create a Theme object, handling missing fields gracefully
                 theme = Theme(
                     id=data.get('id'),
                     name=data.get('name'),
@@ -37,21 +37,14 @@ class ThemeFetcher(QThread):
                     carousel_images=data.get('carousel_images', [])
                 )
                 themes.append(theme)
-            
             self.themes_fetched.emit(themes)
-        except requests.exceptions.RequestException as e:
+        except Exception as e:
             print(f"Failed to fetch themes: {e}")
-            self.themes_fetched.emit([])
-        except json.JSONDecodeError as e:
-            print(f"Failed to parse theme data: {e}")
             self.themes_fetched.emit([])
 
 
 class CoverImageFetcher(QThread):
-    """
-    Thread for fetching a single cover image from a URL.
-    """
-    image_loaded = pyqtSignal(QPixmap)
+    image_loaded = pyqtSignal(bytes)
     error_occurred = pyqtSignal(str)
 
     def __init__(self, image_url: str):
@@ -64,27 +57,22 @@ class CoverImageFetcher(QThread):
                 self.error_occurred.emit(ERROR_NO_COVER_IMAGE)
                 return
             
-            response = requests.get(self.image_url, stream=True)
+            # Check cache first (Expires in 7 Days / 604800 seconds)
+            cached_image = cache.get(self.image_url, max_age_seconds=604800)
+            if cached_image:
+                self.image_loaded.emit(cached_image)
+                return
+
+            response = requests.get(self.image_url, stream=True, timeout=10)
             response.raise_for_status()
-            
-            pixmap = QPixmap()
-            pixmap.loadFromData(response.content)
-            
-            if pixmap.isNull():
-                self.error_occurred.emit(f"Failed to load image from URL: {self.image_url}")
-            else:
-                self.image_loaded.emit(pixmap)
-                
-        except requests.exceptions.RequestException as e:
-            self.error_occurred.emit(f"Network error: {e}")
+            # Save the new image to cache
+            cache.set(self.image_url, response.content)
+            self.image_loaded.emit(response.content)
         except Exception as e:
-            self.error_occurred.emit(f"Unexpected error: {e}")
+            self.error_occurred.emit(f"Network error: {e}")
 
 
 class CarouselImageFetcher(QThread):
-    """
-    Thread for fetching multiple carousel images.
-    """
     images_loaded = pyqtSignal(list)
     error_occurred = pyqtSignal(str)
 
@@ -93,22 +81,22 @@ class CarouselImageFetcher(QThread):
         self.image_urls = image_urls
 
     def run(self):
-        pixmaps = []
+        image_bytes_list = []
         for url in self.image_urls:
             try:
-                response = requests.get(url, stream=True)
-                response.raise_for_status()
+                # Check cache first (Expires in 7 Days / 604800 seconds)
+                cached_image = cache.get(url, max_age_seconds=604800)
+                if cached_image:
+                    image_bytes_list.append(cached_image)
+                else:
+                    response = requests.get(url, stream=True, timeout=10)
+                    response.raise_for_status()
+                    cache.set(url, response.content)
+                    image_bytes_list.append(response.content)
+            except Exception as e:
+                print(f"Failed to load carousel image {url}: {e}")
                 
-                pixmap = QPixmap()
-                pixmap.loadFromData(response.content)
-                
-                if not pixmap.isNull():
-                    pixmaps.append(pixmap)
-            except requests.exceptions.RequestException as e:
-                print(f"Failed to load carousel image from URL {url}: {e}")
-                continue # Try the next image
-
-        if pixmaps:
-            self.images_loaded.emit(pixmaps)
+        if image_bytes_list:
+            self.images_loaded.emit(image_bytes_list)
         else:
             self.error_occurred.emit("Failed to load any carousel images.")

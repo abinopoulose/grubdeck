@@ -21,3 +21,5 @@ ERROR_NO_THEMES = "No themes found. Please check your internet connection."
 ERROR_NO_COVER_IMAGE = "Image not available."
 ERROR_INSTALLATION_FAILED = "Theme installation failed. Please check the logs."
 ERROR_GRUB_UPDATE_FAILED = "GRUB configuration updated, but `update-grub` failed. Please run it manually."
+
+ERROR_NO_SUDO = "Root privileges are required to apply GRUB themes."

@@ -28,7 +28,7 @@ class ThemeInstaller(QThread):
             # Use pkexec to run the privileged script with root permissions
             # We pass the theme name and repo link as command-line arguments
             self.process = subprocess.Popen(
-                ['pkexec', 'python3', '/usr/share/grubdeck/privileged_installer.py', self.theme_name, self.repo_link],
+                ['pkexec', 'python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'privileged_installer.py'), self.theme_name, self.repo_link],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True
