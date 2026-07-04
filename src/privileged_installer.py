@@ -11,23 +11,16 @@ def report_progress(percentage, message):
     print(f"PROGRESS:{percentage}:{message}", flush=True)
 
 def find_grub_config_and_update_command():
-    """
-    Identifies the correct GRUB config file and update command based on the system.
-    Returns (config_path, update_command).
-    """
+    import shutil
     grub_config_path = "/etc/default/grub"
-    grub_update_command = ["update-grub"]
-
-    if os.path.exists("/boot/efi/EFI/fedora/grub.cfg"):
-        grub_config_path = "/boot/efi/EFI/fedora/grub.cfg"
-        grub_update_command = ["grub2-mkconfig", "-o", "/boot/efi/EFI/fedora/grub.cfg"]
-    elif os.path.exists("/boot/grub2/grub.cfg"):
-        grub_config_path = "/etc/default/grub"
-        grub_update_command = ["grub2-mkconfig", "-o", "/boot/grub2/grub.cfg"]
-    elif os.path.exists("/boot/grub/grub.cfg"):
-        grub_config_path = "/etc/default/grub"
+    if shutil.which("update-grub"):
         grub_update_command = ["update-grub"]
-
+    elif shutil.which("grub-mkconfig"):
+        grub_update_command = ["grub-mkconfig", "-o", "/boot/grub/grub.cfg"]
+    elif shutil.which("grub2-mkconfig"):
+        grub_update_command = ["grub2-mkconfig", "-o", "/boot/grub2/grub.cfg"]
+    else:
+        grub_update_command = ["update-grub"]
     return grub_config_path, grub_update_command
 
 def run_installation():
