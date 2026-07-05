@@ -14,7 +14,7 @@ fi
 
 STAGING_DIR="./staging"
 SOURCE_DIR="./src"
-PACKAGE_NAME="${APP_NAME}-${VERSION}-1.${ARCHITECTURE}.rpm"
+PACKAGE_NAME="grubdeck.rpm"
 
 echo "Starting RPM package creation for ${APP_NAME} v${VERSION}..."
 

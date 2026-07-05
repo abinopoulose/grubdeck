@@ -12,7 +12,7 @@ else
     exit 1
 fi
 
-PACKAGE_NAME="${APP_NAME}-${VERSION}-${ARCHITECTURE}.deb"
+PACKAGE_NAME="grubdeck.deb"
 
 echo "[*] Removing existing installation of ${APP_NAME}..."
 sudo apt remove -y "${APP_NAME}" || true
