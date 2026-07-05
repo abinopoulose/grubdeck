@@ -10,7 +10,7 @@ PROGRESS_DIALOG_HEIGHT = 150
 
 # URL for the theme index
 # This URL points to the correct JSON index file in the GitHub repository
-THEME_INDEX_URL = "https://raw.githubusercontent.com/abinopoulose/grubdeck-index/refs/heads/main/index.json"
+THEME_INDEX_URL = os.environ.get("GRUBDECK_INDEX_URL", "")
 
 # GRUB configuration paths (for installer script)
 GRUB_CONFIG_PATH = "/etc/default/grub"

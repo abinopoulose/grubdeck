@@ -1,7 +1,7 @@
 import webbrowser
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QLabel, QPushButton, QScrollArea, QStackedWidget,
-                             QMessageBox, QApplication, QGridLayout, QLineEdit, QSizePolicy)
+                             QMessageBox, QApplication, QGridLayout, QLineEdit, QSizePolicy, QComboBox)
 from PyQt6.QtGui import QFont, QIcon
 from PyQt6.QtCore import Qt, QSize, QObject, QEvent, QRect
 
@@ -120,6 +120,28 @@ class GrubThemeManagerApp(QMainWindow):
         self.carousel = ImageCarousel()
         layout.addWidget(self.carousel, 1)
 
+        # Initialize the size selector dropdown
+        self.size_selector = QComboBox()
+        self.size_selector.setFixedHeight(40)
+        self.size_selector.setStyleSheet("""
+            QComboBox { 
+                background-color: #181825; 
+                color: #cdd6f4; 
+                border: 1px solid #313244; 
+                border-radius: 8px; 
+                padding: 5px 15px;
+                font-size: 14px;
+            }
+            QComboBox::drop-down { border: none; }
+            QComboBox QAbstractItemView { 
+                background-color: #181825; 
+                color: #cdd6f4; 
+                selection-background-color: #313244; 
+                border: 1px solid #313244;
+            }
+        """)
+        layout.addWidget(self.size_selector)
+        
         # Description
         self.preview_desc = QLabel()
         self.preview_desc.setWordWrap(True)
@@ -233,8 +255,12 @@ class GrubThemeManagerApp(QMainWindow):
     def show_preview(self, theme):
         self.current_theme = theme
         self.preview_title.setText(theme.name)
-        self.preview_author.setText(f"Created by {theme.created_by}")
+        self.preview_author.setText(f"Created by {theme.created_by.get('name', 'Unknown') if isinstance(theme.created_by, dict) else theme.created_by}")
         self.preview_desc.setText(theme.description)
+        
+        self.size_selector.clear()
+        for opt in getattr(theme, 'size_options', []):
+            self.size_selector.addItem(opt.get('name', 'Unknown Size'))
         
         self.carousel.show_loading()
         self.carousel_fetcher = CarouselImageFetcher(theme.carousel_images)
@@ -245,18 +271,33 @@ class GrubThemeManagerApp(QMainWindow):
         self.central_widget.setCurrentWidget(self.preview_page)
 
     def open_repo(self):
-        if self.current_theme and self.current_theme.repo_link:
-            webbrowser.open(self.current_theme.repo_link)
+        if not self.current_theme: return
+        
+        selected_index = self.size_selector.currentIndex()
+        if selected_index < 0: return # Safety check
+        
+        size_opt = self.current_theme.size_options[selected_index]
+        repo_link = size_opt.get('repo_link')
+        
+        if repo_link:
+            import webbrowser
+            webbrowser.open(repo_link)
 
     def install_theme(self):
         if not self.current_theme: return
+        
+        selected_index = self.size_selector.currentIndex()
+        if selected_index < 0: return # Safety check
+        
+        size_opt = self.current_theme.size_options[selected_index]
+        
         self.install_btn.setEnabled(False)
         self.install_btn.setText("Installing...")
         
         self.progress_dialog = InstallationProgressDialog(self)
         self.progress_dialog.show()
         
-        self.installer = ThemeInstaller(self.current_theme.name, self.current_theme.repo_link)
+        self.installer = ThemeInstaller(self.current_theme.name, size_opt['repo_link'], size_opt['branch_name'])
         self.installer.progress_updated.connect(self.progress_dialog.update_progress)
         self.installer.installation_completed.connect(self.on_install_done)
         self.installer.start()

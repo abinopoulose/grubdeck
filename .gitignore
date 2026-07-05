@@ -3,3 +3,5 @@
 .env
 *.md
 *.deb
+
+index.json

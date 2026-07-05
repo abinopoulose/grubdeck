@@ -13,29 +13,37 @@ class ThemeFetcher(QThread):
 
     def run(self):
         try:
-            # Check cache first (Expires in 1 Hour / 3600 seconds)
-            cached_data = cache.get(THEME_INDEX_URL, max_age_seconds=3600)
+            import os
+            # 1. Determine if the URL is actually a local file path
+            is_local = False
+            local_path = THEME_INDEX_URL
             
-            if cached_data:
-                themes_data = json.loads(cached_data.decode('utf-8'))
+            if THEME_INDEX_URL.startswith("file://"):
+                local_path = THEME_INDEX_URL.replace("file://", "")
+                is_local = True
+            elif THEME_INDEX_URL.startswith("/") or THEME_INDEX_URL.startswith("./") or THEME_INDEX_URL.startswith("~/"):
+                local_path = os.path.expanduser(THEME_INDEX_URL)
+                is_local = True
+
+            # 2. Fetch the data
+            if is_local and os.path.exists(local_path):
+                # Bypass cache entirely for local files for instant dev feedback
+                with open(local_path, 'r', encoding='utf-8') as f:
+                    themes_data = json.load(f)
             else:
-                response = requests.get(THEME_INDEX_URL, timeout=15)
-                response.raise_for_status()
-                # Save the new response to cache
-                cache.set(THEME_INDEX_URL, response.content)
-                themes_data = json.loads(response.text)
+                # Standard network fetching with cache
+                cached_data = cache.get(THEME_INDEX_URL, max_age_seconds=3600)
+                if cached_data:
+                    themes_data = json.loads(cached_data.decode('utf-8'))
+                else:
+                    response = requests.get(THEME_INDEX_URL, timeout=15)
+                    response.raise_for_status()
+                    cache.set(THEME_INDEX_URL, response.content)
+                    themes_data = json.loads(response.text)
             
             themes = []
             for data in themes_data:
-                theme = Theme(
-                    id=data.get('id'),
-                    name=data.get('name'),
-                    cover_image=data.get('cover_image'),
-                    repo_link=data.get('repo_link'),
-                    description=data.get('description', ''),
-                    created_by=data.get('created_by', 'Unknown'),
-                    carousel_images=data.get('carousel_images', [])
-                )
+                theme = Theme(data)
                 themes.append(theme)
             self.themes_fetched.emit(themes)
         except Exception as e:

@@ -28,12 +28,13 @@ def run_installation():
     Main function to handle the theme installation process.
     """
     # Check for correct number of arguments
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("Error: Invalid number of arguments.")
         sys.exit(1)
         
     theme_name = sys.argv[1]
     repo_link = sys.argv[2]
+    branch_name = sys.argv[3]
     
     report_progress(5, f"Starting installation of '{theme_name}'...")
 
@@ -48,7 +49,7 @@ def run_installation():
         repo_dir_name = repo_link.split('/')[-1].replace('.git', '')
         
         subprocess.run(
-            ['git', 'clone', '--depth=1', repo_link, temp_dir],
+            ['git', 'clone', '--depth=1', '-b', branch_name, repo_link, temp_dir],
             check=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
