@@ -14,7 +14,7 @@ fi
 
 DEB_BUILD_DIR="${APP_NAME}-${VERSION}-${ARCHITECTURE}"
 SOURCE_DIR="./src"
-PACKAGE_NAME="${APP_NAME}-${VERSION}-${ARCHITECTURE}.deb"
+PACKAGE_NAME="grubdeck.deb"
 
 echo "Starting Debian package creation for ${APP_NAME} v${VERSION}..."
 

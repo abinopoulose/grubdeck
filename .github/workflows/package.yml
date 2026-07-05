@@ -51,14 +51,13 @@ jobs:
           body: "Automatic build triggered by merge to master branch."
           overwrite: true
           files: |
-            *.deb
+            grubdeck.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   build_rpm:
     runs-on: ubuntu-latest
-    # This runs in parallel with the Debian build for maximum speed
     
     permissions:
       contents: write 
@@ -104,6 +103,6 @@ jobs:
           body: "Automatic build triggered by merge to master branch."
           overwrite: true
           files: |
-            *.rpm
+            grubdeck.rpm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
