@@ -1,13 +1,10 @@
-from dataclasses import dataclass, field
-from typing import List
 
-@dataclass
 class Theme:
-    """Represents a single GRUB theme with all its metadata."""
-    id: int
-    name: str
-    cover_image: str
-    repo_link: str
-    description: str
-    created_by: str
-    carousel_images: List[str] = field(default_factory=list)
+    def __init__(self, data):
+        self.id = data.get("id")
+        self.name = data.get("name")
+        self.cover_image = data.get("cover_image")
+        self.description = data.get("description", "")
+        self.carousel_images = data.get("carousel_images", [])
+        self.size_options = data.get("size_options", [])
+        self.created_by = data.get("created_by", {})

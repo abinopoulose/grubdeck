@@ -1,4 +1,14 @@
 import sys
+import os
+
+# [DEV] Load local .env if running directly from source
+_env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+if os.path.exists(_env_path):
+    with open(_env_path) as f:
+        for line in f:
+            if '=' in line and not line.strip().startswith('#'):
+                k, v = line.strip().split('=', 1)
+                os.environ.setdefault(k.strip(), v.strip(' \"\''))
 import traceback
 import os
 from datetime import datetime

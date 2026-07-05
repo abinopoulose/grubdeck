@@ -14,10 +14,11 @@ class ThemeInstaller(QThread):
     progress_updated = pyqtSignal(int, str)
     installation_completed = pyqtSignal(bool, str)
     
-    def __init__(self, theme_name: str, repo_link: str):
+    def __init__(self, theme_name: str, repo_link: str, branch_name: str):
         super().__init__()
         self.theme_name = theme_name
         self.repo_link = repo_link
+        self.branch_name = branch_name
         self.process = None
 
     def run(self):
@@ -28,7 +29,7 @@ class ThemeInstaller(QThread):
             # Use pkexec to run the privileged script with root permissions
             # We pass the theme name and repo link as command-line arguments
             self.process = subprocess.Popen(
-                ['pkexec', 'python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'privileged_installer.py'), self.theme_name, self.repo_link],
+                ['pkexec', 'python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'privileged_installer.py'), self.theme_name, self.repo_link, self.branch_name],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True
@@ -75,6 +76,7 @@ class PrivilegedInstaller(QThread):
         super().__init__()
         self.theme_name = theme_name
         self.repo_link = repo_link
+        self.branch_name = branch_name
         self._is_running = True
 
     def run(self):

@@ -90,7 +90,8 @@ class ThemeCard(QFrame):
         self.name_label.setStyleSheet("color: #cdd6f4; font-size: 16px; font-weight: bold; border: none; background: transparent;")
         content_layout.addWidget(self.name_label)
 
-        self.author_label = QLabel(f"By: {self.theme.created_by}")
+        author_name = self.theme.created_by.get("name", "Unknown") if isinstance(self.theme.created_by, dict) else self.theme.created_by
+        self.author_label = QLabel(f"By: {author_name}")
         self.author_label.setStyleSheet("color: #a6adc8; font-size: 13px; border: none; background: transparent;")
         content_layout.addWidget(self.author_label)
         
