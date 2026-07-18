@@ -1,0 +1,104 @@
+[
+    {
+        "id": "d9b2d63d-a233-4123-817d-304b4c730248",
+        "name": "Ubuntu Theme",
+        "cover_image": "https://raw.githubusercontent.com/abinopoulose/grub-theme-ubuntu-1080p/refs/heads/master/background.png",
+        "description": "A clean, modern GRUB theme made for Ubuntu.",
+        "carousel_images": [
+            "https://raw.githubusercontent.com/abinopoulose/grub-theme-ubuntu-1080p/refs/heads/master/background.png",
+            "https://gitlab.com/grub-themes/ubuntu-2k/-/raw/main/background.png"
+        ],
+        "size_options": [
+            {
+                "name": "1080p",
+                "repo_link": "https://github.com/abinopoulose/grub-theme-ubuntu-1080p.git",
+                "branch_name": "master"
+            },
+            {
+                "name": "2k",
+                "repo_link": "https://gitlab.com/grub-themes/ubuntu-2k.git",
+                "branch_name": "main"
+            }
+        ],
+        "created_by": {
+            "name": "xenlism",
+            "profile_img": "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png",
+            "github_link": "github.com/abinopoulose"
+        }
+    },
+    {
+        "id": "3e7c8008-54bd-4482-9383-7c2c0199d7e5",
+        "name": "Debian Theme",
+        "cover_image": "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png",
+        "description": "A clean, modern GRUB theme made for Debian.",
+        "carousel_images": [
+            "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png"
+        ],
+        "size_options": [
+            {
+                "name": "1080p",
+                "repo_link": "https://github.com/abinopoulose/grub-theme-debian-1080p.git",
+                "branch_name": "main"
+            }
+        ],
+        "created_by": {
+            "name": "xenlism",
+            "profile_img": "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png",
+            "github_link": "github.com/abinopoulose"
+        }
+    },
+    {
+        "id": "f8a18357-8ab2-4b2a-89a1-7c91dbafc17b",
+        "name": "Fedora Theme",
+        "cover_image": "https://gitlab.com/grub-themes/fedora-1080p/-/raw/main/background.png",
+        "description": "A clean, modern GRUB theme made for Fedora.",
+        "carousel_images": [
+            "https://gitlab.com/grub-themes/fedora-1080p/-/raw/main/background.png",
+            "https://gitlab.com/grub-themes/fedora-2k/-/raw/main/background.png",
+            "https://gitlab.com/grub-themes/fedora-4k/-/raw/main/background.png"
+        ],
+        "size_options": [
+            {
+                "name": "1080p",
+                "repo_link": "https://gitlab.com/grub-themes/fedora-1080p.git",
+                "branch_name": "main"
+            },
+            {
+                "name": "2k",
+                "repo_link": "https://gitlab.com/grub-themes/fedora-2k.git",
+                "branch_name": "main"
+            },
+            {
+                "name": "4k",
+                "repo_link": "https://gitlab.com/grub-themes/fedora-4k.git",
+                "branch_name": "main"
+            }
+        ],
+        "created_by": {
+            "name": "xenlism",
+            "profile_img": "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png",
+            "github_link": "github.com/abinopoulose"
+        }
+    },
+    {
+        "id": "77f1f0a2-21d3-469b-8919-48c9df10a8b9",
+        "name": "Kali Theme",
+        "cover_image": "https://gitlab.com/grub-themes/kali-2k/-/raw/main/background.png",
+        "description": "A clean, modern GRUB theme made for Kali.",
+        "carousel_images": [
+            "https://gitlab.com/grub-themes/kali-2k/-/raw/main/background.png"
+        ],
+        "size_options": [
+            {
+                "name": "2k",
+                "repo_link": "https://gitlab.com/grub-themes/kali-2k.git",
+                "branch_name": "main"
+            }
+        ],
+        "created_by": {
+            "name": "xenlism",
+            "profile_img": "https://raw.githubusercontent.com/abinopoulose/grub-theme-debian-1080p/refs/heads/main/background.png",
+            "github_link": "github.com/abinopoulose"
+        }
+    }
+]
